@@ -1,5 +1,5 @@
 /**
- * @NApiVersion 2.x
+ * @NApiVersion 2.0
  * @NScriptType UserEventScript
  * @NModuleScope SameAccount
  */
@@ -12,6 +12,10 @@ define(['N/record'], function (record) {
         }
 
         var purchaseOrderId = scriptContext.newRecord.id;
+        // Check if it's a new Purchase Order (no ID yet)
+        if (!purchaseOrderId) {
+            return;
+        }
         var purchaseOrderStatus = record.load({
             type: record.Type.PURCHASE_ORDER,
             id: purchaseOrderId
@@ -20,7 +24,7 @@ define(['N/record'], function (record) {
         });
 
         // Check if the purchase order is in the "Closed" status
-        if (purchaseOrderStatus === 'Closed') {
+        if (purchaseOrderStatus === 'Closed' || purchaseOrderStatus === 'Fully Billed') {
             // If the status is "Closed", do not display the button
             return;
         }
@@ -34,7 +38,7 @@ define(['N/record'], function (record) {
             label : 'Close PO',
             functionName : 'closePoButton()'
         });
-        form.clientScriptFileId = 193285; //internal id of the script file in the file cabinet
+        form.clientScriptFileId = 209942; //internal id of the script file in the file cabinet
     }
     return {
         beforeLoad: beforeLoad_addButton

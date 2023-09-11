@@ -1,5 +1,5 @@
 /**
- * @NApiVersion 2.x
+ * @NApiVersion 2.0
  * @NScriptType ClientScript
  * @NModuleScope SameAccount
  */
@@ -65,7 +65,7 @@ define(['N/currentRecord', 'N/record', 'N/ui/dialog'], function (currentRecord, 
       //var r = confirm("Are you sure you want to close?");
 
       var options = {
-              title: 'Purchase Order',
+              title: 'Close/Cancel Purchase Order',
               // message: 'Click OK to Close PO, click Cancel to Cancel PO',
               message: 'Please Confirm Closing/Cancelling PO',
              buttons: [
